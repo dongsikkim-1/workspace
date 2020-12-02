@@ -7,7 +7,8 @@ from django.http import HttpResponse, JsonResponse
 from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db.models import F
-from models import employees
+from django.db import models
+from rest_api_test.models import Employees
 
 @method_decorator(csrf_exempt,name='dispatch')
 class IndexView(View):
