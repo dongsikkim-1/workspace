@@ -8,13 +8,31 @@ from django.views.decorators.csrf import csrf_exempt
 from django.utils.decorators import method_decorator
 from django.db.models import F
 from django.db import models
-from rest_api_test.models import Employees
+from .models import employees
+# from django.shortcuts import render
+from django.core.serializers import serialize
+# from django.core import serializers
+
+from django.core.serializers import serialize
+
+
 
 @method_decorator(csrf_exempt,name='dispatch')
 class IndexView(View):
     def get(self, request):
+    #    if not request.is_ajax():
+        #   raise Http404
+       sveti_all = list(employees.objects.all())
+       return HttpResponse(serialize('json', sveti_all))        
+        
+        # result = []
+        # models = (employees) # 이전대상 모델들
+        # for model in models:
+            # result.extend(model.objects.all())
+        # print serializers.serialize('json', result)
+        # print serialize('json', result)
 
-        emps = employees.objects.filter(scoops_ordered__gt=F('store_visits'))
+        # emps = employees.
         
         # dummy_data = {
         #     'name': '죠르디',
@@ -23,7 +41,10 @@ class IndexView(View):
         #     'age': 5
         # }
         # return JsonResponse(dummy_data)
-        return JsonResponse(emps)
+        # return JsonResponse(emps)
+        # return JsonResponse(emps)
+
+
     
     def post(self, request):
         return HttpResponse("Post 요청을 잘받았다")
