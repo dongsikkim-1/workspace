@@ -14,6 +14,7 @@ from django.core.serializers import serialize
 # from django.core import serializers
 
 from django.core.serializers import serialize
+import json
 
 
 
@@ -47,7 +48,14 @@ class IndexView(View):
 
     
     def post(self, request):
-        return HttpResponse("Post 요청을 잘받았다")
+        if request.method == 'POST': 
+            note_data = request.POST 
+            login_user = request.user
+            data = employees(draft_user=login_user,note_data=note_data.get('note_data'),created_at=datetime.datetime.now(),updated_at=datetime.datetime.now()) 
+            data.save() 
+        return return HttpResponse("Post 요청을 잘받았다")
+
+        # return HttpResponse("Post 요청을 잘받았다")
    
     def put(self, request):
         return HttpResponse("Put 요청을 잘받았다")
