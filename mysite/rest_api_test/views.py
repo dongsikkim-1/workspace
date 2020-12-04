@@ -15,6 +15,7 @@ from django.core.serializers import serialize
 
 from django.core.serializers import serialize
 import json
+from urllib.request import urlopen , Request
 
 
 
@@ -46,16 +47,29 @@ class IndexView(View):
         # return JsonResponse(emps)
 
 
-    
     def post(self, request):
-        if request.method == 'POST': 
-            note_data = request.POST 
-            login_user = request.user
-            data = employees(draft_user=login_user
-            ,note_data=note_data.get('note_data')
-            ,created_at=datetime.datetime.now(),updated_at=datetime.datetime.now()) 
-            data.save() 
+        # response_body = urlopen(request).read()
+        # getJson = json.loads(response_body)["response"]["body"]       
+        # employees(employee_id=getJson["fields"]["employee_id"], first_name=getJson["fields"]["first_name"], last_name=getJson["fields"]["last_name"], email=getJson["fields"]["email"]).save()
+        # employees(employee_id=employee_id, first_name=first_name, last_name=last_name, email=email).save()
+        cond_json = json.loads(request.body.decode('utf-8'))
+        print(cond_json)
+        fields = cond_json[0]["fields"]
+        employees(employee_id=fields["employee_id"],first_name=fields["first_name"], last_name=fields["last_name"], email=fields["email"]).save()
+        # print(cond)
         return HttpResponse("Post 요청을 잘받았다")
+
+ 
+
+    # def post(self, request):
+        # if request.method == 'POST': 
+        #     note_data = request.POST 
+        #     login_user = request.user
+        #     data = employees(draft_user=login_user
+        #     ,note_data=note_data.get('note_data')
+        #     ,created_at=datetime.datetime.now(),updated_at=datetime.datetime.now()) 
+        #     data.save() 
+        # return HttpResponse("Post 요청을 잘받았다")
 
         # return HttpResponse("Post 요청을 잘받았다")
    
