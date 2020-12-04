@@ -4,7 +4,7 @@ from django.db import models
                  
 class employees(models.Model):
     employee_id = models.IntegerField(primary_key=True)
-    first_name = models.CharField(max_length=100, null = True)
+    first_name = models.CharField(max_length=200, null = True)
     last_name = models.CharField(max_length=25)
     email = models.CharField(max_length=50)
     class Meta:
