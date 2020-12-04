@@ -48,15 +48,18 @@ class IndexView(View):
 
 
     def post(self, request):
-        # response_body = urlopen(request).read()
-        # getJson = json.loads(response_body)["response"]["body"]       
-        # employees(employee_id=getJson["fields"]["employee_id"], first_name=getJson["fields"]["first_name"], last_name=getJson["fields"]["last_name"], email=getJson["fields"]["email"]).save()
-        # employees(employee_id=employee_id, first_name=first_name, last_name=last_name, email=email).save()
         cond_json = json.loads(request.body.decode('utf-8'))
         print(cond_json)
-        fields = cond_json[0]["fields"]
-        employees(employee_id=fields["employee_id"],first_name=fields["first_name"], last_name=fields["last_name"], email=fields["email"]).save()
-        # print(cond)
+        # 방법1
+        # fields = cond_json[0]["fields"]
+        # employees(employee_id=fields["employee_id"],first_name=fields["first_name"], last_name=fields["last_name"], email=fields["email"]).save()
+        # 방법2
+        i = 0
+        for item in cond_json :
+            print(item["fields"]["employee_id"])
+            fields = item["fields"]
+            employees(employee_id=fields["employee_id"],first_name=fields["first_name"], last_name=fields["last_name"], email=fields["email"]).save()
+            i += 1
         return HttpResponse("Post 요청을 잘받았다")
 
  
@@ -77,4 +80,17 @@ class IndexView(View):
         return HttpResponse("Put 요청을 잘받았다")
 
     def delete(self, request):
+        cond_json = json.loads(request.body.decode('utf-8'))
+        try: 
+            i = 0
+            for item in cond_json :
+                print(item["fields"]["employee_id"])
+                fields = item["fields"]
+                item = employees.objects.get(employee_id=fields["employee_id"]) 
+                item.delete()
+                i += 1
+    
+        except employees.DoesNotExist: 
+            return JsonResponse({'message': 'The tutorial does not exist'}, status=status.HTTP_404_NOT_FOUND) 
+        
         return HttpResponse("Delete 요청을 잘받았다")
