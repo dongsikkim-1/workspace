@@ -26,6 +26,7 @@ class departments(models.Model):
 # python3 manage.py migrate --run-syncdb
 
 #python3 manage.py makemigrations;python3 manage.py migrate;python3 manage.py migrate --run-syncdb
+#windows 10 python manage.py makemigrations;python manage.py migrate;python manage.py migrate --run-syncdb
 
 # create table employees(
 #     employee_id number,
