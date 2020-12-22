@@ -1,0 +1,412 @@
+@Nav_Menu_Height:70px;
+@Div_Path_Height:30px;
+@Nav_Menu_Color:#FFBA00;
+////// 메인 메뉴 바 //////
+.nav-main {
+  height:@Nav_Menu_Height;
+  // background-color: @Nav_Menu_Color;
+  background: linear-gradient( to right, #00CFDB, #467ce1 );
+  .nav-brand {
+    img {
+      width:30px;
+      height:30px;
+      // position:absolute;
+      left:0;
+      -webkit-transition: opacity 0.5s ease-in-out;
+      -moz-transition: opacity 0.5s ease-in-out;
+      -o-transition: opacity 0.5s ease-in-out;
+      transition: opacity 0.5s ease-in-out;
+      // &:hover{
+        // background:url("../assets/image/menu_list_hover.png") no-repeat;
+        //opacity: 0;
+        //src:"../assets/image/menu_list_hover.png";
+      // }
+    }
+  }
+}
+
+////// 사이드 메뉴바 //////
+.nav-Sidebar {
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px;  // left면 왼쪽, right면 오른쪽  .active와 동일하게 하면 됨
+    height: 100vh;
+    z-index: 999;
+    //background: #7386D5;
+    background-color: #005ad5;
+    color: #fff;
+    transition: all 0.3s;
+    overflow-y: scroll;
+    box-shadow: 3px 3px 3px rgba(0, 0, 0, 0.2);
+    vertical-align: top;
+    align-content: flex-start;
+
+    // 사이드 메뉴바 활성화
+    &.active {
+      left: 0;
+    }
+
+    // 뒤로가기 버튼
+    .div-Back {
+      width: 35px;
+      height: 35px;
+      line-height: 35px;
+      text-align: center;
+      background: #7386D5;
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+      -webkit-transition: all 0.3s;
+      -o-transition: all 0.3s;
+      transition: all 0.3s;
+
+      // 뒤로가기 버튼 Hover
+      &:hover{
+        background: #fff;
+        color: #7386D5;
+      }
+    }
+
+    // 사이드바 헤더
+    .sidebar-header {
+        //background: #6d7fcc;
+        //background: red;
+        width:100vw;
+        height:@Div_Path_Height + @Nav_Menu_Height;  // 메인 메뉴바 Height + Path Height
+    }
+
+    .div-sidebar-menu{
+        width:100vw;
+        a {
+            display: block;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            text-decoration: none;
+            &:hover{
+                color: rgb(213, 115, 136);
+                background: #fff;
+            }
+            span{
+              padding-left: 20px;
+            }
+        }
+
+        .div-sidebar-submenu{
+            span{
+              margin-left: 20px;
+            }
+        }
+    }
+    
+}
+
+////// 경로 공간 //////
+.div_Path{
+  height:@Div_Path_Height;
+  display: flex;
+  margin-top: 10px;
+  margin-left: 20px;
+  font-size: 30px;
+  font-weight: bold;
+  
+  // background:green;
+}
+
+////// 사이드바 활성화 시 불투명 배경 //////
+.overlay {
+    display: none;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 998;
+    opacity: 0;
+    transition: all 0.5s ease-in-out;
+
+    &.active{
+      display: block;
+      opacity: 1;
+    }
+}
+
+.wrapper{
+  content:'';
+}
+.wrapper::before{content:'';}
+
+@media all and (max-width:575px) {
+  content:'xs';
+}
+@media all and (max-width:767px) {
+  content:'sm';
+}
+@media all and (max-width:991px) {
+  content:'md';
+}
+@media all and (max-width:1199px) {
+  content:'lg';
+}
+@media all and (min-width:1200px) {
+  content:'xl';
+}
+
+  
+
+// #sidebar ul li a {
+//     //padding: 10px;
+//     font-size: 1.1em;
+//     display: block;
+// }
+
+// #sidebar ul li a:hover {
+//     color: rgb(213, 115, 136);
+//     background: #fff;
+// }
+
+// ul ul a {
+//     font-size: 0.9em !important;
+//     padding-left: 30px !important;
+//     background: #30e43f;
+// }
+
+
+// 메뉴 Hover CSS
+  .navbar-nav li a{margin-top: -5px; padding:10px;display:block;text-transform: uppercase; font-size: 18px; font-weight: 500; display: inline-block; position: relative;} // 대메뉴 CSS   
+  .navbar-nav li:hover ul{display:inline-block; }  //대 메뉴 hover시 하위 메뉴 display 속성   
+  .navbar-nav ul{position:absolute;min-width:150px;display:none;padding:0px} // 하위메뉴 ul  속성
+  .navbar-nav li ul:hover li{display:block} // //대 메뉴 hover시 하위 메뉴 display 속성 
+  .navbar-nav ul li{display:inline-block;} // 하위 메뉴 리스트 생길때 
+  .navbar-nav li ul li a { font-size: 15px;} // 하위 메뉴 Font Size
+// 메뉴 Hover CSS 
+
+
+.btntop_class {
+  display:display; 
+  position:fixed; 
+  bottom:15px; 
+  right:5px; 
+  background:gray; 
+  opacity:30%; 
+  padding:0px 5px;
+
+  .arrow_class {
+    color: #ffffff98;
+  }
+}
+
+.nav-Sidebar {
+  overflow-y: hidden;
+}
+.title {
+  padding-left: 10px;
+  font-size: 23px;
+  font-weight: bold;
+  color: #fff;
+  position: relative;
+  top: -3px;
+}
+.navbar-light .navbar-nav .nav-link {
+  color: #fff !important;
+}
+
+// 대 메뉴 클릭시 대메뉴 CSS
+.navbar-light .navbar-nav .active > .nav-link,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-light .navbar-nav .nav-link.show,
+.navbar-light .navbar-nav .show > .nav-link {
+  color: #004bba !important;
+  opacity: 1;
+  font-weight: 900;
+}
+
+// .dropdown-item:focus, // 20200211 메뉴 hover 작업하면서 권오윤 삭제
+.dropdown-item:hover {
+  color: #fff !important;
+  text-decoration: none;
+  background-color: #005ad5 !important;
+}
+.nav-main .nav-brand img {
+  width: 22px;
+  height: 22px;
+}
+.dropdown-toggle:after {
+  display: inline-block;
+  margin-left: 0.5em !important;
+  vertical-align: 0.255em;
+  content: "";
+  border-top: 0.3em solid;
+  border-right: 0.3em solid transparent;
+  border-bottom: 0;
+  border-left: 0.3em solid transparent;
+  position: relative;
+  top: 3px;
+}
+.logout img {
+  width: 35px;
+}
+.s_title {
+  // margin-left:5px;
+  letter-spacing: -1px;
+}
+
+/* 테이블 */
+.tui-grid-border-line-top {
+  /* background-color: #000; */
+  background: #f3f4f6;
+  border-top: 2px solid #004bba;
+  color: #121212;
+  font-size: 15px;
+  font-weight: 700;
+  background-color: none !important;
+}
+
+.tui-grid-no-scroll-x .tui-grid-border-line-bottom {
+  background-color: #cbcbcb;
+}
+.tui-grid-body-container {
+  position: relative;
+  margin-top: -1px;
+  border-bottom: solid 1px#ccc !important;
+  height: 40px !important;
+}
+
+.tui-grid-cell {
+  background-color: #fff;
+  border-color: #ccc;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+  color: #333;
+}
+
+.tui-grid-border-line-left {
+  top: 0;
+  bottom: 17px;
+  left: 0;
+  width: 0;
+  background-color: #fff !important;
+}
+
+.tui-grid-border-line-right {
+  top: 0;
+  bottom: 0;
+  right: 0;
+  width: 0;
+}
+.tui-grid-cell-header {
+  background-color: #f3f4f6 !important;
+  /* border-color: #ccc; */
+  /* border-left-width: 1px; */
+  /* border-right-width: 1px; */
+  border-top-width: 0;
+  /* border-bottom-width: 1px; */
+  /* color: #222; */
+  height: 34px !important;
+}
+.tui-grid-cell-row-header {
+  background-color: #f3f4f6;
+  border-color: #ccc !important;
+  border-left-width: 0;
+  border-right-width: 0;
+  border-top-width: 0;
+  border-bottom-width: 1px;
+  color: #333;
+}
+
+.tui-pagination .tui-page-btn {
+  display: inline-block;
+  position: relative;
+  width: 28px;
+  padding: 8px 0 6px;
+  margin-left: 0;
+  color: #333;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 1;
+  text-decoration: none;
+  vertical-align: middle;
+  border: 1px solid #ddd;
+  border-width: 1px 1px 1px 0;
+}
+
+.tui-grid-border-line {
+  position: absolute;
+  z-index: 99 !important;
+}
+.sidebar-header {
+  background-color: #004bba;
+}
+.sidebar-header h2 {
+  position: absolute;
+  top: 20px;
+  left: 10px;
+  color: #fff;
+  font-size: 25px;
+}
+.nav-Sidebar .div-sidebar-menu a {
+  color: #fff;
+  text-decoration: none;
+  background-color: transparent;
+}
+
+.nav-Sidebar .div-sidebar-menu a:hover {
+  color: #fff;
+  background: #ffb500;
+  font-weight: 900;
+}
+
+.nav-Sidebar .div-sidebar-menu {
+  width: 100vw;
+  border-bottom: solid 1px rgba(255, 255, 255, 0.1);
+}
+
+.nav-Sidebar .div-Back {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  text-align: center;
+  background: none;
+  position: absolute;
+  top: 17px;
+  right: 10px;
+  cursor: pointer;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  // border: solid 1px #ffffff7a;
+  background-color: #ffb500;
+}
+.btn-primary {
+  color: #fff;
+  background-color: #005ad5 !important;
+  border-color: #005ad5 !important;
+}
+.tui-pagination .tui-first-child.tui-is-selected {
+  border-left: 1px solid #005ad5 !important;
+}
+.tui-pagination .tui-is-selected,
+.tui-pagination strong {
+  color: #fff;
+  background: #005ad5 !important;
+  border-color: #005ad5 !important;
+  cursor: default;
+}
+.tui-pagination .tui-page-btn {
+  border-right: 1px solid #ddd !important;
+}
+.tui-grid-cell-summary {
+  background-color: #e3edff !important;
+  border-color: #ccc;
+  border-left-width: 1px;
+  border-right-width: 1px;
+  color: #333;
+}
+.form-group {
+  margin-bottom: 0rem !important;
+}
+
+.tui-grid-header-area {
+  max-height: 68px;
+}

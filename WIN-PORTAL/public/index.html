@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+  
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>윈정보기술</title>
+    <link rel="icon" href="win-logo.png"/>
+    <link rel="shortcut icon" type="image/vnd.microsoft.icon" href="win-logo.png"/>
+    <link rel="shortcutIcon" href="win-logo.png"/>
+    <!-- 안드로이드 OS 바로가기/ 북마크/ 즐겨찾기 추가 시 나오는 이미지 -->
+    <link rel="shortcut icon" href="win-logo.png" type="image/x-icon" />
+
+    <!-- 애플 iOS 바로가기/ 북마크/ 즐겨찾기 추가 시 나오는 이미지 -->
+    <link rel="apple-touch-icon" href="win-logo.png" />
+
+
+    <meta name="google" value="notranslate">  <!-- 크롬 자동 번역하기 막기 -->
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+    <meta name="format-detection" content="no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="description" content="wininfo" />
+    <meta name="author" content="wininfo" />
+
+  
+    <!-- IE에서 bootstrap-vue 활성화 -->
+    <script src="https://unpkg.com/babel-polyfill@latest/dist/polyfill.min.js"></script>
+
+     <!-- CJH 차트 사용 용도로 추가 -->
+    <link rel="stylesheet" href="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.css"/>
+    <script src="https://uicdn.toast.com/tui.chart/latest/tui-chart.min.js"></script> 
+
+    <!-- 안드로이드 OS 바로가기/ 북마크/ 즐겨찾기 추가 시 나오는 이미지 -->
+     <!-- <link rel="shortcut icon" href="../src/assets/image/win-logo.png" type="image/x-icon" /> -->
+
+    <!-- 애플 iOS 바로가기/ 북마크/ 즐겨찾기 추가 시 나오는 이미지 -->
+    <!-- <link rel="apple-touch-icon" href="../src/assets/image/win-logo.png" /> -->
+
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.5/jquery.mCustomScrollbar.min.css">
+
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/xeicon@2.3.3/xeicon.min.css">
+    
+   
+  </head>
+  <body class="hold-transition bg" oncontextmenu='return false'>
+    <noscript>
+      <strong>We're sorry but vue_site doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <script>
+      // TODO: 아래에 서비스워커 등록
+      if ('serviceWorker' in navigator) {
+        // navigator.serviceWorker.register('./service-worker.js').then(regist => {
+        navigator.serviceWorker.register('sw.js').then(regist => {
+          var swRegist = regist;
+          console.log('Service Worker Registered');
+
+          if ('pushManager' in regist) {
+            // The service worker supports push
+            console.log('The service worker supports push');
+          } else {
+            // The service worker doesn't support push
+            console.log('The service worker doesnt support push');
+          }
+
+          // TODO: Push 기능 초기화
+          //initPush();
+
+          regist.addEventListener('updatefound', () => {
+            const newWorker = regist.installing;
+            console.log('Service Worker update found!');
+
+            newWorker.addEventListener('statechange', function () {
+              console.log('Service Worker state changed:', this.state);
+            });
+          });
+        }).catch(err => {
+          console.log('navi', err);
+        });
+
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          console.log('Controller changed');
+        });
+      }
+    </script>
+    
+  </body>
+</html>
